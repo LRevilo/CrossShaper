@@ -1,6 +1,11 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2019
 
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CrossShaper - VST3", "CrossShaper_VST3.vcxproj", "{7879FFE7-2B05-9CD6-33B0-B6DB6FA34395}"
+	ProjectSection(ProjectDependencies) = postProject
+		{44BDC7DC-7223-C5BC-0DE9-A7FBE7D873C5} = {44BDC7DC-7223-C5BC-0DE9-A7FBE7D873C5}
+	EndProjectSection
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CrossShaper - Shared Code", "CrossShaper_SharedCode.vcxproj", "{44BDC7DC-7223-C5BC-0DE9-A7FBE7D873C5}"
 EndProject
 Global
@@ -9,6 +14,10 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7879FFE7-2B05-9CD6-33B0-B6DB6FA34395}.Debug|x64.ActiveCfg = Debug|x64
+		{7879FFE7-2B05-9CD6-33B0-B6DB6FA34395}.Debug|x64.Build.0 = Debug|x64
+		{7879FFE7-2B05-9CD6-33B0-B6DB6FA34395}.Release|x64.ActiveCfg = Release|x64
+		{7879FFE7-2B05-9CD6-33B0-B6DB6FA34395}.Release|x64.Build.0 = Release|x64
 		{44BDC7DC-7223-C5BC-0DE9-A7FBE7D873C5}.Debug|x64.ActiveCfg = Debug|x64
 		{44BDC7DC-7223-C5BC-0DE9-A7FBE7D873C5}.Debug|x64.Build.0 = Debug|x64
 		{44BDC7DC-7223-C5BC-0DE9-A7FBE7D873C5}.Release|x64.ActiveCfg = Release|x64

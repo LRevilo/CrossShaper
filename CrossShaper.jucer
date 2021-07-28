@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="JRlAOC" name="CrossShaper" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
-              pluginFormats="buildAU">
+              pluginFormats="buildVST3">
   <MAINGROUP id="uXZ7oA" name="CrossShaper">
     <GROUP id="{ED696C45-32E0-9419-C027-050695583504}" name="Source">
       <FILE id="o4wogY" name="PluginProcessor.cpp" compile="1" resource="0"
