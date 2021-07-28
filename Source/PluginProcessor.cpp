@@ -156,6 +156,7 @@ void CrossShaperAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, 
 
         // ..do something to the data...
     }
+    buffer.clear();
 }
 
 //==============================================================================
