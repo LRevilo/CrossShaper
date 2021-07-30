@@ -5,6 +5,15 @@
               pluginFormats="buildVST3">
   <MAINGROUP id="uXZ7oA" name="CrossShaper">
     <GROUP id="{ED696C45-32E0-9419-C027-050695583504}" name="Source">
+      <FILE id="t11R8n" name="CustomLookAndFeel.cpp" compile="1" resource="0"
+            file="Source/CustomLookAndFeel.cpp"/>
+      <FILE id="GDfXGi" name="CustomLookAndFeel.h" compile="0" resource="0"
+            file="Source/CustomLookAndFeel.h"/>
+      <FILE id="GliR86" name="CustomRotary.cpp" compile="1" resource="0"
+            file="Source/CustomRotary.cpp"/>
+      <FILE id="iMAfz5" name="CustomRotary.h" compile="0" resource="0" file="Source/CustomRotary.h"/>
+      <FILE id="hChMWS" name="LRFilter.cpp" compile="1" resource="0" file="Source/LRFilter.cpp"/>
+      <FILE id="ZfofL2" name="LRFilter.h" compile="0" resource="0" file="Source/LRFilter.h"/>
       <FILE id="o4wogY" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="gk9xA4" name="PluginProcessor.h" compile="0" resource="0"
