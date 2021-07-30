@@ -54,6 +54,7 @@ private:
 
     double sampleRate = 48000.0;
     float cutoffFrequency = 300.0;
+    float prevCutoff = 300.f;
     //==============================================================================
     /** Processes the input and output samples supplied in the processing context. */
 };

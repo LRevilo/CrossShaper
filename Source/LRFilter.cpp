@@ -50,6 +50,7 @@ void LRFilter::update()
 {
     g = tanpi(cutoffFrequency / sampleRate);
     h = (float)(1.0 / (1.0 + R2 * g + g * g));
+
 }
 
 void LRFilter::prepare(const int& inNumChannels, const int& inSampleRate)
@@ -102,7 +103,10 @@ void LRFilter::processBuffer(std::atomic<float>* crossOverFreq, juce::AudioBuffe
 
     for (size_t i = 0; i < numSamples; ++i)
     {
-        setCutoffFrequency(*crossOverFreq);
+
+        float f = (1 - 1.f / 256) * prevCutoff + (1.f / 256) * *crossOverFreq;
+        setCutoffFrequency(f);
+        prevCutoff = f;
         for (size_t channel = 0; channel < numChannels; ++channel)
         {
             auto* inputSamples = inBuffer.getReadPointer(channel);

@@ -95,6 +95,9 @@ void CrossShaperAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    LRFilter.prepare(getTotalNumInputChannels(), sampleRate);
+    auto q = apvts.getRawParameterValue("CrossOver Freq");
+    LRFilter.setCutoffFrequency(*q);
 }
 
 void CrossShaperAudioProcessor::releaseResources()
@@ -150,13 +153,34 @@ void CrossShaperAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, 
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
+
+    juce::AudioBuffer<float> Dry;
+    juce::AudioBuffer<float> Low;
+    juce::AudioBuffer<float> High;
+
+    Dry.makeCopyOf(buffer);
+    High.makeCopyOf(buffer);
+    Low.makeCopyOf(buffer);
+
+    auto q = apvts.getRawParameterValue("CrossOver Freq");
+
+    LRFilter.processBuffer(q, buffer, Low, High);
+
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
-        auto* channelData = buffer.getWritePointer (channel);
+        auto* channelData = buffer.getWritePointer(channel);
+        auto* channelDataDry = Dry.getWritePointer(channel);
+        auto* channelDataLow = Low.getWritePointer(channel);
+        auto* channelDataHigh = High.getWritePointer(channel);
+
+        for (int sample = 0; sample < buffer.getNumSamples(); sample++)
+        {
+            channelData[sample] = channelDataLow[sample] + channelDataHigh[sample];
+        }
 
         // ..do something to the data...
     }
-    buffer.clear();
+
 }
 
 //==============================================================================
@@ -184,6 +208,18 @@ void CrossShaperAudioProcessor::setStateInformation (const void* data, int sizeI
     // whose contents will have been created by the getStateInformation() call.
 }
 
+juce::AudioProcessorValueTreeState::ParameterLayout CrossShaperAudioProcessor::createParameterLayout()
+{
+    juce::AudioProcessorValueTreeState::ParameterLayout layout;
+
+    layout.add(std::make_unique<juce::AudioParameterFloat>("CrossOver Freq",
+                                                           "CrossOver Freq",
+                                                           juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f),
+                                                           300.f));
+
+
+    return layout;
+}
 //==============================================================================
 // This creates new instances of the plugin..
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
